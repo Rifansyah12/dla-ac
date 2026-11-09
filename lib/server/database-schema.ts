@@ -27,6 +27,23 @@ const schemaStatements = [
     id TINYINT UNSIGNED NOT NULL PRIMARY KEY,
     initialized TINYINT(1) NOT NULL DEFAULT 0
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS ac_recovery_emails (
+    user_id VARCHAR(80) COLLATE utf8mb4_bin NOT NULL PRIMARY KEY,
+    email VARCHAR(254) NOT NULL,
+    updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    FOREIGN KEY (user_id) REFERENCES ac_users(id) ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS ac_password_resets (
+    user_id VARCHAR(80) COLLATE utf8mb4_bin NOT NULL PRIMARY KEY,
+    request_id VARCHAR(36) COLLATE utf8mb4_bin NOT NULL,
+    code_hash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+    expires_at DATETIME(3) NOT NULL,
+    requested_at DATETIME(3) NOT NULL,
+    window_started_at DATETIME(3) NOT NULL,
+    request_count SMALLINT UNSIGNED NOT NULL DEFAULT 1,
+    attempts SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES ac_users(id) ON DELETE CASCADE
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
   `CREATE TABLE IF NOT EXISTS ac_catalog_state (
     id TINYINT UNSIGNED NOT NULL PRIMARY KEY,
     initialized TINYINT(1) NOT NULL DEFAULT 0
@@ -85,6 +102,7 @@ export async function migrateDatabase(): Promise<void> {
     await connection.execute("INSERT IGNORE INTO ac_schema_migrations (version) VALUES (?)", ["001_initial"]);
     await connection.execute("INSERT IGNORE INTO ac_schema_migrations (version) VALUES (?)", ["002_owner_bootstrap"]);
     await connection.execute("INSERT IGNORE INTO ac_schema_migrations (version) VALUES (?)", ["003_audit_events"]);
+    await connection.execute("INSERT IGNORE INTO ac_schema_migrations (version) VALUES (?)", ["004_password_recovery"]);
   } finally {
     connection.release();
   }

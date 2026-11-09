@@ -34,6 +34,7 @@ Salin `.env.example` menjadi `.env.local`, lalu isi:
 - `AC_DATA_DIR` (opsional): direktori data dan foto unggahan yang dapat ditulis; default `./data`.
 - `AC_STORAGE` (opsional): `json` secara default, atau `mysql` setelah skema disiapkan dan katalog diimpor. Foto unggahan tetap berada di `AC_DATA_DIR/uploads/`.
 - `AC_DB_HOST`, `AC_DB_PORT`, `AC_DB_NAME`, `AC_DB_USER`, `AC_DB_PASSWORD`, dan `AC_DB_SSL`: pengaturan koneksi MySQL/MariaDB untuk migrasi atau saat menggunakan `AC_STORAGE=mysql`. Atur `AC_DB_SSL=true` jika database menyediakan TLS dengan sertifikat tepercaya.
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, dan `SMTP_FROM`: pengaturan email hosting untuk mengirim kode pemulihan kata sandi. Isi sesuai informasi SMTP dari cPanel; jangan membagikan password email.
 
 Mulai ulang server setelah mengubah konfigurasi. Dashboard tersedia di `/admin`. Mode JSON memerlukan kata sandi admin dan kunci sesi; mode MySQL memerlukan kunci sesi dan akun yang disiapkan melalui proses inisialisasi di bawah. Jangan membagikan `.env.local`.
 
@@ -73,6 +74,7 @@ Tes migrasi akan menghapus dan membuat ulang tabel aplikasi pada database uji. G
 ```bash
 AC_TEST_DB_NAME=dla_ac_test_local AC_TEST_DB_RESET=1 npm run test:db
 AC_TEST_DB_NAME=dla_ac_test_local AC_TEST_DB_RESET=1 npm run test:auth
+AC_TEST_DB_NAME=dla_ac_test_local AC_TEST_DB_RESET=1 npm run test:reset
 ```
 
 Tanpa kedua variabel uji tersebut, tes integrasi database dilewati. Tes autentikasi memakai hasil build produksi; jalankan `npm run build -- --webpack` terlebih dahulu. Perintah yang sama dapat digunakan untuk memeriksa build yang sesuai dengan cPanel sebelum deployment.
@@ -82,6 +84,16 @@ Tanpa kedua variabel uji tersebut, tes integrasi database dilewati. Tes autentik
 Pada mode MySQL, owner yang telah masuk ke `/admin` dapat membuka **Kelola akun admin** untuk membuat akun, mengaktifkan atau menonaktifkannya, mereset kata sandi, dan mengatur izin mengubah harga serta menghapus lot. Sampaikan kata sandi awal kepada admin secara aman. Setiap perubahan akun mengakhiri sesi admin tersebut; admin yang tidak diberi izin harga hanya dapat membuat lot dengan harga belum ditentukan.
 
 Owner maupun admin dapat menggunakan **Ubah kata sandi saya**. Setelah berhasil, seluruh sesi akun tersebut berakhir dan pengguna harus masuk kembali. Mode JSON tetap memakai kata sandi bersama lama sampai migrasi ke MySQL diselesaikan.
+
+### Pemulihan kata sandi melalui email
+
+Fitur ini tersedia untuk akun individu pada mode MySQL. Setelah memperbarui kode, jalankan `npm run db:migrate` untuk menyiapkan tabel baru sebelum me-restart aplikasi. Akun yang sudah ada tetap dapat masuk seperti biasa; setiap admin dan owner perlu menyimpan **Email pemulihan** di menu pengaturan dengan memasukkan kata sandi saat ini. Owner juga dapat mengisi email pemulihan saat membuat atau mengubah akun admin.
+
+Siapkan kotak email pengirim di cPanel dan isi variabel `SMTP_*` pada environment hosting. Gunakan host, username, dan alamat pengirim sesuai penyedia hosting; `SMTP_FROM` berisi alamat email pengirim. Umumnya port `465` menggunakan `SMTP_SECURE=true`, sedangkan port `587` menggunakan `SMTP_SECURE=false` dengan STARTTLS. Sertifikat TLS harus tepercaya. Jangan menaruh password SMTP di repository atau chat.
+
+Jalankan `npm run smtp:check` untuk memeriksa koneksi dan autentikasi SMTP tanpa mengirim email. Setelah itu, uji pengiriman kode ke alamat pemulihan yang sudah didaftarkan.
+
+Pada halaman login, pilih **Lupa kata sandi?**, lalu masukkan username dan email pemulihan yang terdaftar. Jika data cocok, kode OTP dikirim melalui email dan dapat digunakan sekali dalam 10 menit untuk membuat kata sandi baru. Pengiriman ulang dibatasi, dan setelah berhasil seluruh sesi lama akun tersebut berakhir. Kode, password, dan isi email tidak disimpan dalam riwayat aktivitas.
 
 Pada menu **Jasa teknisi dan WhatsApp**, admin dan owner dapat memperbarui keterangan jasa teknisi. Hanya owner yang dapat mengubah nomor Admin Utama dan Admin 2; nomor harus menggunakan format internasional Indonesia yang diawali `62`. Perubahan diterapkan pada beranda, katalog, detail produk, jasa teknisi, dan keranjang saat halaman dimuat kembali. Jika belum ada pengaturan tersimpan, aplikasi memakai nomor awal dan keterangan jasa yang sudah ada.
 

@@ -20,7 +20,7 @@ test("migrasi dan penyimpanan katalog MySQL", { skip: ready ? false : "Atur AC_T
   const directory = await mkdtemp(path.join(os.tmpdir(), "dla-ac-catalog-test-"));
   const file = path.join(directory, "lots.json");
   const reset = async () => {
-    for (const table of ["ac_lot_photos", "ac_lots", "ac_catalog_state", "ac_admin_permissions", "ac_users", "ac_owner_bootstrap", "ac_site_settings", "ac_audit_events", "ac_schema_migrations"]) {
+    for (const table of ["ac_password_resets", "ac_recovery_emails", "ac_lot_photos", "ac_lots", "ac_catalog_state", "ac_admin_permissions", "ac_users", "ac_owner_bootstrap", "ac_site_settings", "ac_audit_events", "ac_schema_migrations"]) {
       await databasePool().query(`DROP TABLE IF EXISTS \`${table}\``);
     }
     await migrateDatabase();

@@ -200,6 +200,13 @@ Kerjakan hanya jika fitur ini dipilih. Fitur inti admin/owner tidak bergantung p
 - Pencatatan bersifat upaya terbaik: kegagalan pencatatan tidak boleh menghalangi tautan WhatsApp terbuka. Perhatikan klik pada tautan baru dan submit formulir keranjang agar perilaku yang ada tidak rusak.
 - Gunakan validasi sumber, pembatasan penyalahgunaan yang sesuai, dan akses laporan hanya untuk owner.
 
+### 5.7 Pemulihan kata sandi dengan OTP email
+
+- Admin dan owner dapat menyimpan email pemulihan masing-masing; owner juga dapat mengatur email pemulihan admin.
+- Pemulihan menggunakan username dan email terdaftar, lalu kode OTP dikirim melalui SMTP hosting. Kode berlaku 10 menit, hanya sekali pakai, dan memiliki pembatasan permintaan serta percobaan.
+- Pemulihan yang berhasil mencabut sesi lama. Kode OTP, kata sandi, dan isi email tidak dicatat pada riwayat aktivitas.
+- **Progres lokal:** alur dan pengujian tersedia. Pengiriman melalui hosting memerlukan pembuatan kotak email cPanel, konfigurasi `SMTP_*`, migrasi database, dan uji SMTP pada lingkungan hosting.
+
 ---
 
 ## 6. Rekomendasi teknis dan data
@@ -420,16 +427,67 @@ Nama di bawah adalah rekomendasi; implementasi boleh menyesuaikan struktur proye
 
 Pada konfigurasi hosting yang pernah digunakan, aplikasi berjalan dengan Node.js Selector/Passenger dan `node_modules` berupa symlink ke `nodevenv`. Build Turbopack pernah gagal karena resolusi symlink; build dengan Webpack berhasil. Kondisi hosting dapat berubah, jadi periksa kembali sebelum rilis.
 
-Contoh perintah setelah file diunggah dan lingkungan tujuan sudah dikonfirmasi:
+### Alur pembaruan dari lokal ke hosting
+
+Repository yang digunakan adalah `https://github.com/Rifansyah12/dla-ac.git` pada branch `rifan`. Folder aplikasi hosting yang digunakan saat ini adalah `/home/jannahdi/dla-ac.com`. Sesuaikan lokasi folder atau environment Node.js jika konfigurasi hosting berubah.
+
+#### 1. Uji dan kirim perubahan dari lokal
+
+Setelah perubahan selesai dan diuji di laptop, jalankan dari terminal lokal:
 
 ```bash
-source /home/jannahdi/nodevenv/dla-ac.com/24/bin/activate
-cd /home/jannahdi/dla-ac.com
+cd ~/project-rifan/web-ac
 npm run typecheck
-npm run build -- --webpack
+git status
+git add .
+git status
+git commit -m "Jelaskan perubahan fitur"
+git push -u origin rifan
 ```
 
-Jika versi atau lokasi environment berubah, gunakan perintah aktivasi yang ditampilkan cPanel. Instal dependensi baru di environment aplikasi bila memang ada perubahan dependensi, lalu jalankan migrasi sesuai petunjuk implementasi. Restart aplikasi dari **Setup Node.js App** setelah build dan migrasi berhasil.
+Ganti pesan commit sesuai perubahan dan periksa daftar file yang akan dikirim sebelum melakukan commit. Setelah branch lokal terhubung dengan `origin/rifan`, pembaruan berikutnya dapat dikirim dengan `git push`. Jika belum ada perubahan, tidak perlu membuat commit.
+
+#### 2. Ambil dan terapkan pembaruan di hosting
+
+Untuk perubahan kode biasa yang tidak membutuhkan package atau migrasi database baru, jalankan dari terminal hosting:
+
+```bash
+source /home/jannahdi/nodevenv/dla-ac.com/24/bin/activate &&
+cd /home/jannahdi/dla-ac.com &&
+git pull --ff-only &&
+npm run build -- --webpack &&
+touch tmp/restart.txt
+```
+
+`git pull` mengambil kode terbaru, build menyiapkan aplikasi produksi, dan `touch` meminta Passenger me-restart aplikasi. Perintah dihubungkan dengan `&&` agar restart hanya dilakukan setelah langkah sebelumnya berhasil. Restart juga dapat dilakukan melalui **Setup Node.js App** di cPanel.
+
+#### 3. Jika pembaruan membutuhkan konfigurasi tambahan
+
+Setelah `git pull` dan sebelum build serta restart:
+
+- Jika `package.json` atau `package-lock.json` berubah karena package baru, jalankan `npm install --include=dev` di environment Node.js hosting. Dependensi pengembangan diperlukan saat build; pertahankan symlink `node_modules` yang dikelola cPanel.
+- Jika perubahan menyertakan migrasi database, jalankan migrasi sesuai petunjuk fitur tersebut sebelum restart. Perintah `npm run db:import` dan `npm run db:init-owner` adalah langkah inisialisasi, bukan langkah rutin setiap update.
+- Jika fitur membutuhkan environment baru, tambahkan nilainya secara langsung di `.env.local` atau konfigurasi hosting. Jangan memasukkan kredensial ke repository. File `.env.local`, folder `data/`, dan isi database hosting tidak ikut berpindah melalui Git.
+- Bila diperlukan, jalankan `npm run typecheck` di hosting sebelum build.
+
+#### 4. Jika `git pull` tertahan oleh `next-env.d.ts`
+
+Next.js dapat mengubah file `next-env.d.ts` secara otomatis saat build. Jika Git menyatakan perubahan file tersebut menghalangi pull, periksa dahulu:
+
+```bash
+git diff -- next-env.d.ts
+```
+
+Jika perbedaannya hanya hasil otomatis Next.js, kembalikan file tersebut lalu ulangi pull:
+
+```bash
+git checkout -- next-env.d.ts
+git pull --ff-only
+```
+
+Setelah pull berhasil, jalankan build dan restart seperti pada langkah 2. File hosting seperti `.htaccess`, `.user.ini`, `php.ini`, dan `tmp/` dapat muncul sebagai file tidak terlacak; jangan tambahkan ke repository dari hosting. Jika file lain menyebabkan konflik, periksa perubahannya terlebih dahulu.
+
+Jika versi atau lokasi environment berubah, gunakan perintah aktivasi yang ditampilkan cPanel.
 
 ### Hal yang harus diperiksa saat rilis
 
