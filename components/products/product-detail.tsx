@@ -23,7 +23,7 @@ export function ProductDetail({ lot, related, number }: { lot: Lot; related: Lot
   });
   const photoIndex = photos.findIndex((item) => item.originalIndex === selected);
   const message = [
-    lot.status === "terjual" ? "Halo, saya ingin menanyakan unit lain yang serupa dengan:" : "Halo, saya tertarik dengan AC bekas berikut:",
+    lot.status === "terjual" ? "Halo, saya ingin menanyakan unit lain yang serupa dengan:" : "Halo, saya tertarik dengan unit AC berikut:",
     `Kode: ${lot.code}`, `Dokumentasi: ${lot.title}`,
     quantity ? `Perkiraan kebutuhan: ${quantity} unit` : "",
     city.trim() ? `Kota tujuan: ${city.trim()}` : "",
@@ -31,7 +31,7 @@ export function ProductDetail({ lot, related, number }: { lot: Lot; related: Lot
     "Mohon informasi kondisi, ketersediaan, dan penawarannya. Terima kasih.",
   ].filter(Boolean).join("\n");
   return <main className="detail-page" id="konten"><div className="shell">
-    <div className="detail-breadcrumb"><Link href="/produk"><ArrowLeft size={15} /> Kembali ke katalog</Link><span>{lot.code} / AC BEKAS</span></div>
+    <div className="detail-breadcrumb"><Link href="/produk"><ArrowLeft size={15} /> Kembali ke katalog</Link><span>{lot.code} / AC</span></div>
     <div className="detail-layout">
       <div className="detail-gallery">
         {photo ? <PhotoPreview photos={photos} initialIndex={Math.max(photoIndex, 0)} label={`Perbesar foto ${lot.title}`} className="detail-image"><Image src={photo} alt={`Foto ${lot.title}`} fill priority sizes="(max-width: 850px) 100vw, 55vw" unoptimized={typeof photo === "string"} /><span className="gallery-tag">FOTO ASLI / {lot.code}</span></PhotoPreview> : <div className="detail-image"><span className="missing-photo">Foto belum tersedia</span><span className="gallery-tag">FOTO ASLI / {lot.code}</span></div>}

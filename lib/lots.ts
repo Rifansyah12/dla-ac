@@ -37,12 +37,12 @@ const empty = {
 // Setiap foto ditampilkan sebagai contoh terpisah; pengelompokan lot belum dikonfirmasi.
 export const exampleLots: Lot[] = [
   { ...empty, id: "foto-01", code: "FOTO-01", title: "Dokumentasi outdoor Daikin", brand: "Daikin", kind: "Outdoor", photos: ["client:ac1.jpeg"] },
-  { ...empty, id: "foto-02", code: "FOTO-02", title: "Dokumentasi AC bekas campuran", brand: "Campuran", kind: "Campuran", photos: ["client:ac2.jpeg"] },
+  { ...empty, id: "foto-02", code: "FOTO-02", title: "Dokumentasi AC campuran", brand: "Campuran", kind: "Campuran", photos: ["client:ac2.jpeg"] },
   { ...empty, id: "foto-03", code: "FOTO-03", title: "Dokumentasi outdoor Daikin & Haier", brand: "Daikin, Haier", kind: "Outdoor", photos: ["client:ac3.jpeg"] },
   { ...empty, id: "foto-04", code: "FOTO-04", title: "Dokumentasi unit indoor & outdoor", brand: "Campuran", kind: "Indoor & Outdoor", photos: ["client:ac4.jpeg"] },
   { ...empty, id: "foto-06", code: "FOTO-06", title: "Dokumentasi outdoor Daikin", brand: "Daikin", kind: "Outdoor", photos: ["client:ac6.jpeg"] },
   { ...empty, id: "foto-07", code: "FOTO-07", title: "Dokumentasi outdoor Sharp & indoor", brand: "Sharp", kind: "Indoor & Outdoor", photos: ["client:ac7.jpeg"] },
-  { ...empty, id: "foto-08", code: "FOTO-08", title: "Dokumentasi AC bekas campuran", brand: "Campuran", kind: "Campuran", photos: ["client:ac8.jpeg"] },
+  { ...empty, id: "foto-08", code: "FOTO-08", title: "Dokumentasi AC campuran", brand: "Campuran", kind: "Campuran", photos: ["client:ac8.jpeg"] },
 ];
 
 export function formatPrice(price: number): string {

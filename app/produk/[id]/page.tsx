@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!lot) return { title: "Dokumentasi tidak ditemukan | DLA AC", robots: { index: false, follow: false } };
   const title = `${lot.title} | DLA AC`;
   const detail = lot.description?.replace(/\s+/g, " ").trim() || "Tanyakan kondisi, harga, dan ketersediaan melalui WhatsApp.";
-  const description = `${lot.title} (${lot.code}) untuk kebutuhan AC bekas borongan. ${detail}`.slice(0, 160);
+  const description = `${lot.title} (${lot.code}) untuk kebutuhan AC borongan. ${detail}`.slice(0, 160);
   const path = `/produk/${encodeURIComponent(lot.id)}`;
   const source = lot.photos.map(photoSource).find((photo) => photo !== null);
-  const image = typeof source === "string" ? { url: source, alt: `Foto ${lot.title}` } : source ? { url: source.src, width: source.width, height: source.height, alt: `Foto ${lot.title}` } : { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi unit AC bekas DLA AC" };
+  const image = typeof source === "string" ? { url: source, alt: `Foto ${lot.title}` } : source ? { url: source.src, width: source.width, height: source.height, alt: `Foto ${lot.title}` } : { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi unit AC DLA AC" };
   return { title, description, alternates: { canonical: path }, ...socialMetadata(title, description, path, image) };
 }
 

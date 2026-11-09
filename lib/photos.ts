@@ -12,9 +12,9 @@ export const clientPhotos = [
   { id: "client:ac2.jpeg", image: ac2, label: "Unit indoor dan outdoor" },
   { id: "client:ac3.jpeg", image: ac3, label: "Outdoor Daikin dan Haier" },
   { id: "client:ac4.jpeg", image: ac4, label: "Unit indoor dan outdoor" },
-  { id: "client:ac6.jpeg", image: ac6, label: "Outdoor dan unit AC bekas" },
+  { id: "client:ac6.jpeg", image: ac6, label: "Outdoor dan unit AC" },
   { id: "client:ac7.jpeg", image: ac7, label: "Outdoor Sharp dan unit indoor" },
-  { id: "client:ac8.jpeg", image: ac8, label: "Dokumentasi unit AC bekas" },
+  { id: "client:ac8.jpeg", image: ac8, label: "Dokumentasi unit AC" },
 ] as const;
 
 export function photoSource(id: string): StaticImageData | string | null {

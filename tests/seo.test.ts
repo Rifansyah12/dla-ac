@@ -28,7 +28,8 @@ test("metadata dan sitemap mengikuti katalog publik", async () => {
     const request = (url: string) => fetch(`${base}${url}`, { headers: { "user-agent": "Googlebot" }, cache: "no-store" });
 
     const home = await (await request("/")).text();
-    assert.match(home, /<title>.*AC Bekas Borongan.*DLA AC<\/title>/);
+    assert.match(home, /<title>DLA AC \| Jual Beli AC Borongan.*Jasa Teknisi<\/title>/);
+    assert.doesNotMatch(home, /\bbekas\b/i);
     assert.match(home, /<link rel="canonical" href="https:\/\/dla-ac\.com\/?"/);
     assert.match(home, /<meta property="og:image" content="https:\/\/dla-ac\.com\//);
     const jsonLd = home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
@@ -51,6 +52,7 @@ test("metadata dan sitemap mengikuti katalog publik", async () => {
     }
 
     const catalog = await (await request("/produk?q=Daikin")).text();
+    assert.doesNotMatch(catalog, /\bbekas\b/i);
     assert.match(catalog, /<link rel="canonical" href="https:\/\/dla-ac\.com\/produk"/);
     assert.match(catalog, /<meta property="og:url" content="https:\/\/dla-ac\.com\/produk"/);
 

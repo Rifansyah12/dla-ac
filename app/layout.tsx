@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: siteTitle,
   description: siteDescription,
-  ...socialMetadata(siteTitle, siteDescription, "/", { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi unit outdoor AC bekas DLA AC" }),
+  ...socialMetadata(siteTitle, siteDescription, "/", { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi unit outdoor AC DLA AC" }),
   icons: { icon: logo.src },
 };
 

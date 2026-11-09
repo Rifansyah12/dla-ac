@@ -28,7 +28,7 @@ export function LotForm({ form, busy, uploading, canChangePrice, change, toggleP
       <div className="admin-form-heading"><div><h2>Informasi lot</h2><p>Kolom kosong akan ditampilkan sebagai belum dikonfirmasi.</p></div><button type="button" className="icon-button" aria-label="Tutup formulir" onClick={cancel}><X size={21} /></button></div>
       <div className="admin-fields">
         <label htmlFor="lot-code">Kode lot <span>*</span><input id="lot-code" value={form.code} onChange={(event) => change("code", event.target.value)} maxLength={32} required placeholder="Contoh: LOT-001" /></label>
-        <label htmlFor="lot-title">Judul <span>*</span><input id="lot-title" value={form.title} onChange={(event) => change("title", event.target.value)} maxLength={120} required placeholder="Contoh: Outdoor AC bekas" /></label>
+        <label htmlFor="lot-title">Judul <span>*</span><input id="lot-title" value={form.title} onChange={(event) => change("title", event.target.value)} maxLength={120} required placeholder="Contoh: Outdoor AC Daikin" /></label>
         <label htmlFor="lot-brand">Merek<input id="lot-brand" value={form.brand} onChange={(event) => change("brand", event.target.value)} maxLength={80} placeholder="Pisahkan dengan koma jika campuran" /></label>
         <label htmlFor="lot-kind">Jenis unit<select id="lot-kind" aria-label="Jenis unit" value={form.kind} onChange={(event) => change("kind", event.target.value as Lot["kind"])}>{unitKinds.map((kind) => <option key={kind}>{kind}</option>)}</select></label>
         <label htmlFor="lot-quantity">Jumlah unit<input id="lot-quantity" type="number" min="1" max="100000" step="1" value={form.quantity} onChange={(event) => change("quantity", event.target.value)} placeholder="Belum diketahui" /></label>

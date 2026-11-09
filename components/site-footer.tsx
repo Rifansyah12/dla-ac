@@ -10,14 +10,14 @@ export function SiteFooter({ number }: { number: string | null }) {
         <div className="footer-brand">
           <SiteLogo />
           <p>
-            Jual beli AC bekas untuk kebutuhan borongan serta informasi jasa
+            Jual beli AC untuk kebutuhan borongan serta informasi jasa
             teknisi AC.
           </p>
         </div>
         <div className="footer-links">
           <div>
             <strong>Jelajahi</strong>
-            <Link href="/produk">Stok AC bekas</Link>
+            <Link href="/produk">Stok AC</Link>
             <Link href="/#jasa-teknisi">Jasa teknisi AC</Link>
             <Link href="/keranjang">Keranjang penawaran</Link>
             <Link href="/#cara-pesan">Cara pemesanan</Link>
@@ -28,7 +28,7 @@ export function SiteFooter({ number }: { number: string | null }) {
             {/* <span>Harga, kondisi, jumlah, dan ketersediaan mengikuti konfirmasi pemilik usaha.</span> */}
             <ContactButton
               number={number}
-              message="Halo, saya ingin menanyakan AC bekas borongan yang tersedia."
+              message="Halo, saya ingin menanyakan AC borongan yang tersedia."
               label="Tanya stok"
               className="footer-contact"
             />

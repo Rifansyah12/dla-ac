@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const siteUrl = "https://dla-ac.com";
-export const siteTitle = "Jual Beli AC Bekas Borongan & Jasa Teknisi | DLA AC";
-export const siteDescription = "Jelajahi stok AC bekas indoor dan outdoor untuk kebutuhan borongan serta tanyakan jasa teknisi AC melalui WhatsApp.";
+export const siteTitle = "DLA AC | Jual Beli AC Borongan & Jasa Teknisi";
+export const siteDescription = "Jelajahi stok AC indoor dan outdoor untuk kebutuhan borongan serta tanyakan jasa teknisi AC melalui WhatsApp.";
 
 type ShareImage = { url: string; alt: string; width?: number; height?: number };
 

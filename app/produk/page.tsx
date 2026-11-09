@@ -8,9 +8,9 @@ import { getLots } from "@/lib/server/inventory";
 import { getSiteSettings } from "@/lib/server/site-settings";
 import { socialMetadata } from "@/lib/seo";
 
-const title = "Stok AC Bekas Borongan | DLA AC";
-const description = "Lihat dokumentasi AC bekas indoor dan outdoor untuk kebutuhan borongan. Tanyakan kondisi, ketersediaan, dan penawaran kepada DLA AC.";
-export const metadata: Metadata = { title, description, alternates: { canonical: "/produk" }, ...socialMetadata(title, description, "/produk", { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi stok AC bekas DLA AC" }) };
+const title = "Stok AC Borongan | DLA AC";
+const description = "Lihat dokumentasi AC indoor dan outdoor untuk kebutuhan borongan. Tanyakan kondisi, ketersediaan, dan penawaran kepada DLA AC.";
+export const metadata: Metadata = { title, description, alternates: { canonical: "/produk" }, ...socialMetadata(title, description, "/produk", { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi stok AC DLA AC" }) };
 export const dynamic = "force-dynamic";
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
