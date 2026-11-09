@@ -105,6 +105,14 @@ Uji terlebih dahulu di staging dengan versi Node.js dan MySQL/MariaDB yang sesua
 
 Jangan menimpa `.env`, `.htaccess`, foto, data, atau symlink `node_modules` milik hosting. Siapkan rollback versi aplikasi, database, dan foto yang saling sesuai; jika kembali ke JSON, ingat bahwa perubahan setelah migrasi tidak otomatis tersalin ke `lots.json`. Penyiapan staging, deployment, dan pengujian hosting perlu dilakukan pada lingkungan tujuan.
 
+## SEO dan Google Search Console
+
+Beranda, katalog, dan detail lot memiliki metadata serta URL kanonis untuk `https://dla-ac.com`. Sitemap `/sitemap.xml` dibuat secara dinamis dari katalog, sedangkan `/robots.txt` menunjuk ke sitemap tersebut. Halaman admin dan keranjang menggunakan `noindex`. Domain kanonis diatur di `lib/seo.ts` jika alamat website berubah.
+
+Setelah pembaruan dirilis, kirim `https://dla-ac.com/sitemap.xml` melalui menu **Sitemaps** di Google Search Console dan gunakan **Inspeksi URL** untuk memeriksa halaman. Pertahankan file verifikasi Google di folder `public/`. Pengindeksan dilakukan oleh Google dan dapat membutuhkan waktu.
+
+Untuk memeriksa metadata dan sitemap dengan data uji terpisah, jalankan build produksi lalu `npm run test:seo`.
+
 ## Fitur
 
 - Beranda, galeri foto klien, dan penjelasan cara meminta penawaran.

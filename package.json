@@ -13,7 +13,8 @@
     "smtp:check": "tsx scripts/check-smtp.ts",
     "test:db": "tsx --test tests/catalog-migration.test.ts",
     "test:auth": "tsx --test tests/account-auth.test.ts",
-    "test:reset": "tsx --test tests/password-reset.test.ts"
+    "test:reset": "tsx --test tests/password-reset.test.ts",
+    "test:seo": "tsx --test tests/seo.test.ts"
   },
   "dependencies": {
     "lucide-react": "^1.64.0",

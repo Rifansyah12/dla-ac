@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import acPhoto from "@/fotoac/ac1.jpeg";
 import logo from "@/fotoac/logo-dla.png";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { PhotoViewerProvider } from "@/components/photo-viewer";
+import { siteDescription, siteTitle, siteUrl, socialMetadata } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DLA AC — Jual Beli AC Borongan & Jasa Teknisi",
-  description:
-    "Jual beli AC untuk kebutuhan borongan dan jasa teknisi AC. Lihat dokumentasi unit bekas atau hubungi DLA AC untuk informasi.",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  ...socialMetadata(siteTitle, siteDescription, "/", { url: acPhoto.src, width: acPhoto.width, height: acPhoto.height, alt: "Dokumentasi unit outdoor AC bekas DLA AC" }),
   icons: { icon: logo.src },
 };
 
