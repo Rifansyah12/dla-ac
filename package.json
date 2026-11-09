@@ -1,0 +1,33 @@
+{
+  "name": "dila-ac-bandung",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx scripts/migrate-db.ts",
+    "db:import": "tsx scripts/import-catalog.ts",
+    "db:init-owner": "tsx scripts/init-owner.ts",
+    "test:db": "tsx --test tests/catalog-migration.test.ts",
+    "test:auth": "tsx --test tests/account-auth.test.ts"
+  },
+  "dependencies": {
+    "lucide-react": "^1.64.0",
+    "mysql2": "^3.24.6",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tsx": "^4.23.15"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

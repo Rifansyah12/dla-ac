@@ -1,0 +1,11 @@
+<svg width="620" height="310" viewBox="0 0 620 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="body" x1="310" y1="63" x2="310" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".56" stop-color="#f8fafb"/><stop offset="1" stop-color="#ced9e1"/></linearGradient><linearGradient id="vent" x1="310" y1="183" x2="310" y2="222" gradientUnits="userSpaceOnUse"><stop stop-color="#d5e0e7"/><stop offset="1" stop-color="#f8fafb"/></linearGradient><filter id="shadow" x="0" y="0" width="620" height="310" filterUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="12"/></filter></defs>
+  <ellipse cx="310" cy="242" rx="240" ry="15" fill="#637f91" fill-opacity=".25" filter="url(#shadow)"/>
+  <path d="M53 106C53 76 68 63 99 62C210 58 410 58 521 62C552 63 567 76 567 106V166C567 195 551 211 524 214C401 226 219 226 96 214C69 211 53 195 53 166V106Z" fill="url(#body)" stroke="#d4dfe6" stroke-width="2"/>
+  <path d="M60 105C60 81 74 70 99 69C212 65 408 65 521 69C546 70 560 81 560 105V158C560 176 549 183 529 185C406 194 214 194 91 185C71 183 60 176 60 158V105Z" fill="#fff"/>
+  <path d="M62 160C191 171 427 171 558 160" stroke="#e7eef2" stroke-width="2"/>
+  <path d="M77 188C196 201 424 201 543 188L524 212C399 224 221 224 96 212L77 188Z" fill="url(#vent)"/>
+  <path d="M105 200C232 210 388 210 515 200M112 207C237 215 383 215 508 207" stroke="#aabdc9" stroke-width="2" stroke-linecap="round"/>
+  <path d="M91 80C224 75 396 75 529 80" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <text x="100" y="113" fill="#b0c0ca" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1">KAZE</text><circle cx="514" cy="153" r="3" fill="#a6c56d"/>
+</svg>

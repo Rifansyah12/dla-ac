@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usulan Fitur Admin dan Owner — DLA AC</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f2f1e9; color: #2a4035; font-family: Arial, sans-serif; }
+    .page { position: relative; width: 210mm; height: 297mm; overflow: hidden; padding: 16mm 18mm 18mm; background: #fff; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; padding-bottom: 6mm; border-bottom: 1px solid #dee8dc; }
+    .brand { color: #173e32; font-size: 17pt; font-weight: 800; letter-spacing: -.5px; }
+    .brand small { display: block; margin-top: 2mm; color: #657b69; font-size: 7pt; font-weight: 700; letter-spacing: 1px; }
+    .document-label { color: #9b6924; font-size: 7.5pt; font-weight: 700; letter-spacing: 1px; text-align: right; text-transform: uppercase; }
+    .eyebrow { margin: 0 0 3mm; color: #247452; font-size: 8pt; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { max-width: 150mm; color: #173e32; font-size: 34pt; letter-spacing: -1.3px; line-height: 1.08; }
+    h1 span, h2 span { color: #21825a; }
+    h2 { color: #173e32; font-size: 19pt; letter-spacing: -.5px; line-height: 1.15; }
+    h3 { color: #173e32; font-size: 10pt; line-height: 1.3; }
+    p, li { font-size: 9.1pt; line-height: 1.55; }
+    .lead { max-width: 150mm; margin-top: 5mm; color: #596f62; font-size: 11pt; line-height: 1.55; }
+    .hero { padding-top: 13mm; }
+    .cover-page .hero { padding-top: 10mm; }
+    .callout { margin-top: 9mm; padding: 5mm 6mm; border-left: 3px solid #bb8b38; border-radius: 0 4mm 4mm 0; background: #f2f8ef; }
+    .callout strong { color: #21694b; }
+    .section { margin-top: 10mm; }
+    .cover-page .section { margin-top: 8mm; }
+    .section h2 { margin-bottom: 4mm; }
+    .section-intro { margin: -1mm 0 5mm; color: #5c7063; }
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+    .flow-step { min-height: 23mm; padding: 4mm; border: 1px solid #d8e8d8; border-radius: 3mm; background: #f8fbf6; }
+    .flow-step b { display: block; margin-bottom: 2mm; color: #a67229; font-size: 8pt; }
+    .flow-step span { color: #325244; font-size: 8pt; font-weight: 700; line-height: 1.4; }
+    .role-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+    .role-card { padding: 5mm; border: 1px solid #d7e7d8; border-radius: 4mm; background: #f5faf3; }
+    .role-card.owner-card { border-color: #eadfc8; background: #fffbf1; }
+    .role-card h3 { margin-bottom: 2mm; font-size: 12pt; }
+    .role-card p { color: #5c7063; }
+    .note { margin-top: 8mm; padding: 4mm 5mm; border: 1px solid #dce7d9; border-radius: 3mm; color: #596f62; font-size: 8.3pt; line-height: 1.5; }
+    .cover-page .note { margin-top: 6mm; }
+    .provider { display: flex; align-items: center; justify-content: space-between; gap: 5mm; margin-top: 4mm; padding: 3mm 5mm; border: 1px solid #e9ddc5; border-left: 3px solid #bb8b38; border-radius: 3mm; background: #fffaf0; }
+    .provider-label { color: #916628; font-size: 7pt; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
+    .provider-name { margin-top: 1.5mm; color: #173e32; font-size: 10pt; font-weight: 700; }
+    .provider-company { margin-top: 1mm; color: #5c7063; font-size: 8pt; }
+    .provider a { color: #21694b; font-size: 8pt; font-weight: 700; text-decoration: underline; }
+    .page-heading { margin: 9mm 0 5mm; }
+    .page-heading p { margin-top: 3mm; color: #5c7063; }
+    .role-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+    .role-heading { display: flex; align-items: center; gap: 3mm; margin-bottom: 4mm; padding-bottom: 3mm; border-bottom: 1px solid #dee8dc; }
+    .role-icon { display: grid; width: 9mm; height: 9mm; place-items: center; border-radius: 3mm; background: #e7f5e9; color: #247452; font-size: 9pt; font-weight: 800; }
+    .owner-role .role-icon { background: #fbefd5; color: #966420; }
+    .role-heading h2 { font-size: 15pt; }
+    .feature { margin-bottom: 4.5mm; }
+    .feature h3 { margin-bottom: 1.2mm; }
+    .feature p { color: #566c5d; font-size: 8.5pt; line-height: 1.48; }
+    .feature .optional { color: #a06a20; font-size: 7pt; font-weight: 700; text-transform: uppercase; }
+    .role-note { margin-top: 1mm; padding: 4mm; border-radius: 3mm; background: #eff8ee; color: #476a50; font-size: 8pt; line-height: 1.45; }
+    table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+    th { padding: 3.2mm 3mm; background: #eff6e9; color: #286344; font-size: 8pt; text-align: left; }
+    td { padding: 3mm; border-bottom: 1px solid #e4ece1; color: #405d4a; line-height: 1.3; }
+    th:nth-child(n+2), td:nth-child(n+2) { width: 18%; text-align: center; }
+    td.yes { color: #21734c; font-weight: 700; }
+    td.no { color: #8a988a; }
+    .phases { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 4mm; }
+    .phase { padding: 4mm 5mm; border: 1px solid #dce7d9; border-radius: 3mm; }
+    .phase h3 { margin-bottom: 2mm; }
+    .phase p { color: #5c7063; font-size: 8.5pt; }
+    .closing { margin-top: 6mm; padding: 4mm 5mm; border-radius: 3mm; background: #f1f7e9; color: #49664d; font-size: 8.5pt; line-height: 1.5; }
+    .footer { position: absolute; right: 18mm; bottom: 9mm; left: 18mm; display: flex; justify-content: space-between; padding-top: 3mm; border-top: 1px solid #dee8dc; color: #758a79; font-size: 7.5pt; }
+    @media screen { .page { margin: 10mm auto; box-shadow: 0 6px 30px #27493522; } }
+    @media print { body { background: #fff; } .page { margin: 0; } }
+  </style>
+</head>
+<body>
+  <section class="page cover-page">
+    <header class="masthead">
+      <div class="brand">DLA AC<small>JUAL BELI AC &amp; JASA TEKNISI</small></div>
+      <div class="document-label">Dokumen usulan<br>Fitur website</div>
+    </header>
+
+    <div class="hero">
+      <p class="eyebrow">Rancangan pengelolaan website</p>
+      <h1>Fitur untuk<br><span>admin &amp; owner.</span></h1>
+      <p class="lead">Pembagian akses untuk membantu pengelolaan katalog AC, informasi jasa teknisi, dan pemantauan website DLA AC.</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>WhatsApp tetap menjadi pusat komunikasi.</strong> Pengunjung melihat informasi di website, lalu menghubungi DLA AC melalui WhatsApp untuk bertanya, memesan, dan menyepakati pembayaran.</p>
+    </div>
+
+    <div class="section">
+      <h2>Alur <span>penggunaan</span></h2>
+      <div class="flow">
+        <div class="flow-step"><b>01</b><span>Pelanggan melihat katalog atau jasa teknisi</span></div>
+        <div class="flow-step"><b>02</b><span>Pelanggan menghubungi WhatsApp bisnis</span></div>
+        <div class="flow-step"><b>03</b><span>Admin memperbarui informasi website</span></div>
+        <div class="flow-step"><b>04</b><span>Owner memantau dan mengatur akses</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Dua peran, <span>satu tujuan</span></h2>
+      <div class="role-cards">
+        <div class="role-card"><h3>Admin</h3><p>Mengelola katalog, stok, foto, dan informasi jasa teknisi agar website selalu sesuai dengan kondisi usaha.</p></div>
+        <div class="role-card owner-card"><h3>Owner</h3><p>Memantau isi website, mengelola akun admin dan kontak bisnis, serta melihat ringkasan perubahan.</p></div>
+      </div>
+    </div>
+
+    <p class="note"><strong>Status dokumen:</strong> aplikasi sudah memiliki fitur dasar pengelolaan katalog yang dapat diaktifkan. Pemisahan role dan fitur tambahan dalam dokumen ini merupakan usulan untuk pengembangan dan dapat disesuaikan bersama.</p>
+    <div class="provider"><div><p class="provider-label">Penyedia jasa pembuatan website</p><p class="provider-name">Rifansyah Hidayatulloh</p><p class="provider-company">Jannah Digital Teknologi</p></div><a href="https://jannahdigitalteknologi.site/">jannahdigitalteknologi.site</a></div>
+    <footer class="footer"><span>Rifansyah Hidayatulloh · Jannah Digital Teknologi</span><span>01 / 03</span></footer>
+  </section>
+
+  <section class="page">
+    <header class="masthead">
+      <div class="brand">DLA AC<small>JUAL BELI AC &amp; JASA TEKNISI</small></div>
+      <div class="document-label">Rincian fitur<br>Admin dan owner</div>
+    </header>
+
+    <div class="page-heading">
+      <p class="eyebrow">Pembagian tugas</p>
+      <h2>Fitur <span>setiap peran</span></h2>
+      <p>Setiap pengguna masuk menggunakan akun sesuai perannya. Owner juga dapat mengakses fitur operasional admin.</p>
+    </div>
+
+    <div class="role-columns">
+      <div>
+        <div class="role-heading"><span class="role-icon">A</span><h2>Admin</h2></div>
+
+        <div class="feature"><h3>1. Dashboard operasional</h3><p>Melihat ringkasan lot yang tersedia, dalam penawaran, terjual, dan yang masih memerlukan konfirmasi.</p></div>
+        <div class="feature"><h3>2. Kelola katalog AC</h3><p>Menambah, mengubah, dan menghapus lot; mengatur foto, merek, jenis, kondisi, lokasi, jumlah, dan harga sesuai informasi yang tersedia.</p></div>
+        <div class="feature"><h3>3. Perbarui stok dan status</h3><p>Memperbarui jumlah serta menandai lot sebagai perlu konfirmasi, tersedia, dalam penawaran, atau terjual. Pembaruan dilakukan secara manual.</p></div>
+        <div class="feature"><h3>4. Informasi jasa teknisi</h3><p>Memperbarui keterangan jasa teknisi dan informasi layanan yang telah diberikan oleh pemilik usaha.</p></div>
+
+        <div class="role-note"><strong>Komunikasi pelanggan:</strong> admin menangani pertanyaan dan kesepakatan langsung melalui aplikasi WhatsApp.</div>
+      </div>
+
+      <div class="owner-role">
+        <div class="role-heading"><span class="role-icon">O</span><h2>Owner</h2></div>
+
+        <div class="feature"><h3>1. Ringkasan dan pengawasan</h3><p>Melihat ringkasan katalog dan status lot, serta mengakses seluruh fitur operasional admin.</p></div>
+        <div class="feature"><h3>2. Kelola akun admin</h3><p>Membuat akun admin terpisah, menonaktifkan akun, dan mengatur hak akses sesuai kebutuhan usaha.</p></div>
+        <div class="feature"><h3>3. Pengaturan kontak bisnis</h3><p>Mengatur nomor WhatsApp yang digunakan oleh tombol kontak di website dan memperbarui informasi bisnis yang diperlukan.</p></div>
+        <div class="feature"><h3>4. Riwayat perubahan</h3><p>Melihat pengguna dan waktu perubahan penting pada katalog, misalnya perubahan harga, stok, foto, atau status lot.</p></div>
+        <div class="feature"><h3>5. Statistik klik WhatsApp <span class="optional">Opsional</span></h3><p>Melihat jumlah klik tombol WhatsApp berdasarkan bagian website, seperti katalog atau jasa teknisi.</p></div>
+      </div>
+    </div>
+
+    <footer class="footer"><span>Rifansyah Hidayatulloh · Jannah Digital Teknologi</span><span>02 / 03</span></footer>
+  </section>
+
+  <section class="page">
+    <header class="masthead">
+      <div class="brand">DLA AC<small>JUAL BELI AC &amp; JASA TEKNISI</small></div>
+      <div class="document-label">Hak akses<br>Dan tahapan</div>
+    </header>
+
+    <div class="page-heading">
+      <p class="eyebrow">Ringkasan akses</p>
+      <h2>Perbandingan <span>hak akses</span></h2>
+      <p>Pembagian berikut merupakan rekomendasi awal dan dapat disesuaikan dengan kebutuhan DLA AC.</p>
+    </div>
+
+    <table>
+      <thead><tr><th>Fitur</th><th>Admin</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr><td>Melihat ringkasan katalog dan status lot</td><td class="yes">Ya</td><td class="yes">Ya</td></tr>
+        <tr><td>Mengelola produk, foto, harga, dan jumlah</td><td class="yes">Ya</td><td class="yes">Ya</td></tr>
+        <tr><td>Memperbarui status lot secara manual</td><td class="yes">Ya</td><td class="yes">Ya</td></tr>
+        <tr><td>Mengelola informasi jasa teknisi</td><td class="yes">Ya</td><td class="yes">Ya</td></tr>
+        <tr><td>Mengatur nomor WhatsApp bisnis</td><td class="no">—</td><td class="yes">Ya</td></tr>
+        <tr><td>Mengelola akun dan hak akses admin</td><td class="no">—</td><td class="yes">Ya</td></tr>
+        <tr><td>Melihat riwayat perubahan katalog</td><td class="no">—</td><td class="yes">Ya</td></tr>
+        <tr><td>Melihat statistik klik WhatsApp <em>(opsional)</em></td><td class="no">—</td><td class="yes">Ya</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section" style="margin-top: 7mm;">
+      <h2>Usulan <span>tahapan</span></h2>
+      <div class="phases">
+        <div class="phase"><h3>Tahap 1 · Fitur utama</h3><p>Akun admin dan owner terpisah, ringkasan katalog, serta pengelolaan katalog, jasa teknisi, dan kontak bisnis.</p></div>
+        <div class="phase"><h3>Tahap 2 · Pemantauan</h3><p>Riwayat perubahan dan, jika diperlukan, statistik klik tombol WhatsApp.</p></div>
+      </div>
+    </div>
+
+    <div class="closing"><strong>Catatan alur:</strong> percakapan, pesanan, serta kesepakatan pembayaran berlangsung melalui WhatsApp. Website tidak otomatis membaca percakapan atau memperbarui status lot. Jumlah klik WhatsApp hanya menunjukkan minat dan bukan bukti pesan terkirim atau penjualan berhasil.</div>
+
+    <footer class="footer"><span>Rifansyah Hidayatulloh · Jannah Digital Teknologi</span><span>03 / 03</span></footer>
+  </section>
+</body>
+</html>

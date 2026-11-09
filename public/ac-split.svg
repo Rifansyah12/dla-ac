@@ -1,0 +1,26 @@
+<svg width="620" height="310" viewBox="0 0 620 310" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="body" x1="310" y1="54" x2="310" y2="217" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/><stop offset="0.67" stop-color="#F8FAF9"/><stop offset="1" stop-color="#D9E1DE"/>
+    </linearGradient>
+    <linearGradient id="front" x1="310" y1="98" x2="310" y2="206" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDFEFE"/><stop offset="1" stop-color="#EDF1EF"/>
+    </linearGradient>
+    <linearGradient id="vent" x1="310" y1="194" x2="310" y2="226" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8B3AF"/><stop offset="0.35" stop-color="#DAE1DE"/><stop offset="1" stop-color="#F8FAF9"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="620" height="310" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+  <ellipse cx="310" cy="244" rx="247" ry="18" fill="#63746E" fill-opacity="0.22" filter="url(#shadow)"/>
+  <path d="M51 96C51 73 68 58 92 57C208 51 410 51 528 57C552 58 569 73 569 96V174C569 195 554 211 532 214C408 230 211 230 88 214C66 211 51 195 51 174V96Z" fill="url(#body)" stroke="#D4DCD9" stroke-width="2"/>
+  <path d="M57 99C57 78 72 65 93 64C211 58 409 58 527 64C548 65 563 78 563 99V166C563 183 551 195 533 197C410 207 210 207 87 197C69 195 57 183 57 166V99Z" fill="url(#front)"/>
+  <path d="M58 173C131 181 226 185 310 185C394 185 489 181 562 173" stroke="#E3E9E6" stroke-width="2"/>
+  <path d="M76 200C200 212 420 212 544 200L532 214C407 229 213 229 88 214L76 200Z" fill="url(#vent)"/>
+  <path d="M110 207C230 216 390 216 510 207" stroke="#AEBAB5" stroke-width="2" stroke-linecap="round"/>
+  <path d="M118 213C236 220 384 220 502 213" stroke="#C2CBC7" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M84 76C213 70 407 70 536 76" stroke="white" stroke-opacity="0.85" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="518" cy="161" r="2.5" fill="#AFBDB7"/>
+  <rect x="490" y="157" width="16" height="3" rx="1.5" fill="#D4DEDA"/>
+</svg>
