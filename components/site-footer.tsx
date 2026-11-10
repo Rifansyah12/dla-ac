@@ -17,6 +17,7 @@ export function SiteFooter({ number }: { number: string | null }) {
         <div className="footer-links">
           <div>
             <strong>Jelajahi</strong>
+            <Link href="/tentang">Tentang kami</Link>
             <Link href="/produk">Stok AC</Link>
             <Link href="/#jasa-teknisi">Jasa teknisi AC</Link>
             <Link href="/keranjang">Keranjang penawaran</Link>

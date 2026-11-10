@@ -7,7 +7,7 @@ import { ContactButton } from "@/components/contact-button";
 import { useCart } from "@/components/cart/cart-provider";
 import { SiteLogo } from "@/components/site-logo";
 
-const links = [{ label: "Beranda", href: "/" }, { label: "Stok AC", href: "/produk" }, { label: "Jasa teknisi", href: "/#jasa-teknisi" }, { label: "Cara pesan", href: "/#cara-pesan" }, { label: "Dokumentasi", href: "/#dokumentasi" }];
+const links = [{ label: "Beranda", href: "/" }, { label: "Tentang kami", href: "/tentang" }, { label: "Stok AC", href: "/produk" }, { label: "Jasa teknisi", href: "/#jasa-teknisi" }, { label: "Cara pesan", href: "/#cara-pesan" }, { label: "Dokumentasi", href: "/#dokumentasi" }];
 const message = "Halo, saya ingin menanyakan AC borongan yang tersedia.";
 
 export function SiteHeader({ number }: { number: string | null }) {

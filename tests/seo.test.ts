@@ -55,10 +55,17 @@ test("metadata dan sitemap mengikuti katalog publik", async () => {
     assert.doesNotMatch(catalog, /\bbekas\b/i);
     assert.match(catalog, /<link rel="canonical" href="https:\/\/dla-ac\.com\/produk"/);
     assert.match(catalog, /<meta property="og:url" content="https:\/\/dla-ac\.com\/produk"/);
+    const about = await (await request("/tentang")).text();
+    assert.match(about, /<link rel="canonical" href="https:\/\/dla-ac\.com\/tentang"/);
+    assert.ok(about.includes("Jl. Terusan Pasir Koja, Gg. Bah Amid, RT 06/RW 05"));
+    assert.match(about, /<iframe[^>]+title="Peta lokasi DLA AC"/);
+    assert.ok(about.includes("https://maps.app.goo.gl/UQfnuaceSbpTk8qv8"));
+    assert.ok(about.includes("-6.926199%2C107.584214"));
 
     const initialMap = await (await request("/sitemap.xml")).text();
-    assert.equal((initialMap.match(/<loc>/g) ?? []).length, exampleLots.length + 2);
+    assert.equal((initialMap.match(/<loc>/g) ?? []).length, exampleLots.length + 3);
     assert.match(initialMap, /https:\/\/dla-ac\.com\/produk\/foto-01/);
+    assert.match(initialMap, /https:\/\/dla-ac\.com\/tentang/);
     assert.doesNotMatch(initialMap, /https:\/\/dla-ac\.com\/(admin|keranjang)/);
 
     const imageName = "00000000-0000-4000-8000-000000000000.jpg";
@@ -77,7 +84,7 @@ test("metadata dan sitemap mengikuti katalog publik", async () => {
 
     await writeFile(path.join(directory, "lots.json"), "[]", "utf8");
     const emptyMap = await (await request("/sitemap.xml")).text();
-    assert.equal((emptyMap.match(/<loc>/g) ?? []).length, 2);
+    assert.equal((emptyMap.match(/<loc>/g) ?? []).length, 3);
     const removed = await request("/produk/unit%20%26%20baru");
     assert.ok(removed.status === 404 || removed.status === 200);
     assert.match(await removed.text(), /<meta name="robots" content="noindex(?:, nofollow)?"/);

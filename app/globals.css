@@ -514,7 +514,7 @@ a.contact-option:hover { border-color: #72bbdf; background: var(--light); transf
   .footer-links { gap: 25px; }
   .catalog-layout { grid-template-columns: 205px minmax(0, 1fr); gap: 25px; }
 }
-@media (max-width: 1150px) {
+@media (max-width: 1250px) {
   .desktop-nav { display: none; }
   .mobile-menu-button { display: inline-grid; }
   .mobile-nav { position: absolute; top: 100%; left: 0; right: 0; display: grid; padding: 8px 32px 18px; background: var(--night); box-shadow: 0 20px 40px #082e5b45; }

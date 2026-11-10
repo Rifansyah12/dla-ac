@@ -116,6 +116,7 @@ Untuk memeriksa metadata dan sitemap dengan data uji terpisah, jalankan build pr
 ## Fitur
 
 - Beranda, galeri foto klien, dan penjelasan cara meminta penawaran.
+- Halaman `/tentang` dengan informasi DLA AC, alamat, dan peta Google Maps berdasarkan titik lokasi yang diberikan.
 - Informasi jasa teknisi AC dengan tombol WhatsApp untuk menanyakan layanan, jadwal, dan biaya.
 - Katalog `/produk` dengan pencarian, filter jenis/merek/status, dan detail per dokumentasi atau lot.
 - Keranjang `/keranjang` untuk memilih beberapa dokumentasi atau lot dan mengirim permintaan penawaran melalui WhatsApp. Harga, pengiriman, dan metode pembayaran dikonfirmasi bersama penjual.
